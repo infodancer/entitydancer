@@ -1,0 +1,11 @@
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLDatabase.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLDatabaseQuery.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLQueryParameter.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/UnknownTableException.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLDatabaseTable.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLBlob.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLConnectionFactory.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLEntityTransaction.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLEntityManager.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLDatabaseField.java
+/home/matthew/git/entitydancer/sql/src/main/java/org/infodancer/persist/sql/SQLConnection.java

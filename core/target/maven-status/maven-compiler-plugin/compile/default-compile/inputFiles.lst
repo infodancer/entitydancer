@@ -1,0 +1,14 @@
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/EntityType.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/EntityTypeReference.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/ServiceEntityTransaction.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/QueryResult.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/EntityField.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/DatabaseRelationshipCollection.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/DatabaseRelationshipIterator.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/Changeable.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/ServiceEntityManager.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/UnsupportedTypeException.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/Utility.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/WhereClause.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/DatabaseOperation.java
+/home/matthew/git/entitydancer/core/src/main/java/org/infodancer/persist/EntityQuery.java

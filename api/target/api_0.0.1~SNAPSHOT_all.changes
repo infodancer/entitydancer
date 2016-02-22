@@ -1,0 +1,20 @@
+Format: 1.8
+Date: Mon, 22 Feb 2016 11:40:10 -0600
+Source: entitydancer api
+Binary: entitydancer api
+Architecture: all
+Version: 0.0.1~SNAPSHOT
+Distribution: development
+Urgency: low
+Maintainer: Matthew Hunter <matthew@infodancer.org>
+Changed-By: Matthew Hunter <matthew@infodancer.org>
+Description:
+ entitydancer api - Database API for entitydancer
+Changes:
+ entitydancer api (0.0.1~SNAPSHOT) development; urgency=low
+Checksums-Sha1:
+ 0958e6b0ec16ecdb393139f2a1c6cd4daca10414 21860 api_0.0.1~SNAPSHOT_all.deb
+Checksums-Sha256:
+ c4f9f11c5930046481c19bfa5b4607ef57ab77dae43b3b6dfb5b517f3220b0b9 21860 api_0.0.1~SNAPSHOT_all.deb
+Files:
+ c2488fc39fefbc81557b78e95e8eb1e5 21860 misc optional api_0.0.1~SNAPSHOT_all.deb

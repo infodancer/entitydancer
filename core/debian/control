@@ -1,0 +1,13 @@
+Source: entitydancer
+Maintainer Matthew Hunter <matthew@infodancer.org>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>=8) 
+
+Package: entitydancer
+Architecture: all
+Depends: 
+Description: An incomplete and experimental implementation of the Java persistence API
+ Design goals are simplicity of configuration and support for several backend data stores.
+

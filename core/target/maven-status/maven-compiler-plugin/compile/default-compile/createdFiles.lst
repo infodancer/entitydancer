@@ -1,0 +1,14 @@
+org/infodancer/persist/ServiceEntityTransaction.class
+org/infodancer/persist/UnsupportedTypeException.class
+org/infodancer/persist/ServiceEntityManager.class
+org/infodancer/persist/EntityType.class
+org/infodancer/persist/WhereClause.class
+org/infodancer/persist/QueryResult.class
+org/infodancer/persist/DatabaseRelationshipIterator.class
+org/infodancer/persist/EntityTypeReference.class
+org/infodancer/persist/DatabaseRelationshipCollection.class
+org/infodancer/persist/Changeable.class
+org/infodancer/persist/DatabaseOperation.class
+org/infodancer/persist/Utility.class
+org/infodancer/persist/EntityField.class
+org/infodancer/persist/EntityQuery.class
