@@ -47,7 +47,7 @@
       <plugin>
          <artifactId>jdeb</artifactId>
          <groupId>org.vafer</groupId>
-         <version>1.0</version>
+         <version>1.4</version>
          <executions>
                 <execution>
                     <phase>package</phase>
@@ -71,9 +71,4 @@
         </plugin>
     </plugins>
   </build>
-  <scm>
-    <connection>scm:svn:svn://svn.infodancer.org/projects/entitydancer-sql</connection>
-    <developerConnection>scm:svn:svn://svn.infodancer.org/projects/entitydancer-sql</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
 </project>
