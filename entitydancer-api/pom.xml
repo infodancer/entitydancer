@@ -4,45 +4,17 @@
   	<groupId>org.infodancer.entitydancer</groupId>
   	<artifactId>entitydancer</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
-  </parent>
+  </parent>  
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>sql</artifactId>
+  <artifactId>entitydancer-api</artifactId>
   <packaging>jar</packaging>
-  <name>entitydancer-sql</name>
-  <url>http://www.infodancer.org/srcdancer/project/entitydancer-sql</url>
-  <description>
-  	The generic SQL driver for EntityDancer.  Primarily written and tested with MySQL.
-  	
-  	Other databases should work without too much trouble, but my environment is MySQL based, so that's where the testing happens.
-  	
-  	Compatibility patches welcomed.
-  </description>
+  <name>entitydancer api</name>
+  <url>http://www.infodancer.org/srcdancer/project/entitydancer-dbapi</url>
+  <description>The database api for entitydancer.  API only.</description>
   <dependencies>
-    <dependency>
-      <groupId>javax.persistence</groupId>
-      <artifactId>persistence-api</artifactId>
-      <version>[1.0,)</version>
-    </dependency>
-    <dependency>
-      <groupId>org.infodancer.entitydancer</groupId>
-      <artifactId>core</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.infodancer.entitydancer</groupId>
-      <artifactId>api</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <!-- Dependencies for testing only below -->
-    <dependency>
-    	<groupId>mysql</groupId>
-    	<artifactId>mysql-connector-java</artifactId>
-    	<version>5.1.6</version>
-    	<scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
-  	<finalName>entitydancer-sql</finalName>
+  	<finalName>entitydancer-dbapi</finalName>
     <plugins>
       <plugin>
          <artifactId>jdeb</artifactId>

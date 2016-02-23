@@ -11,8 +11,8 @@
   <packaging>pom</packaging>
  
   <modules>
-    <module>api</module>
-    <module>core</module>
-    <module>sql</module>
+    <module>entitydancer-api</module>
+    <module>entitydancer-core</module>
+    <module>entitydancer-sql</module>
   </modules>
 </project>
