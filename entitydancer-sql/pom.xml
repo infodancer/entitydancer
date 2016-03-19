@@ -25,12 +25,12 @@
     </dependency>
     <dependency>
       <groupId>org.infodancer.entitydancer</groupId>
-      <artifactId>core</artifactId>
+      <artifactId>entitydancer-core</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.infodancer.entitydancer</groupId>
-      <artifactId>api</artifactId>
+      <artifactId>entitydancer-api</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <!-- Dependencies for testing only below -->
