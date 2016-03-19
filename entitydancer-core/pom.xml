@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>org.infodancer.entitydancer</groupId>
-      <artifactId>api</artifactId>
+      <artifactId>entitydancer-api</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
