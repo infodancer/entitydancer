@@ -14,7 +14,7 @@
   <dependencies>
   </dependencies>
   <build>
-  	<finalName>entitydancer-dbapi</finalName>
+  	<finalName>entitydancer-api</finalName>
     <plugins>
       <plugin>
          <artifactId>jdeb</artifactId>
