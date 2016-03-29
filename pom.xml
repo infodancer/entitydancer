@@ -15,4 +15,8 @@
     <module>entitydancer-core</module>
     <module>entitydancer-sql</module>
   </modules>
+  <scm>
+    <connection>scm:git:http://infodancer.org/scm/git/entitydancer</connection>
+    <developerConnection>scm:git:http://infodancer.org/scm/git/entitydancer</developerConnection>
+  </scm>
 </project>
