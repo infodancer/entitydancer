@@ -58,32 +58,27 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		return params;
 	}
 
-	@Override
 	public void addTable(String name)
 	{
 		DatabaseTable table = database.getTable(name);
 		addTable(name, table);
 	}
 	
-	@Override
 	public void addTable(DatabaseTable table)
 	{
 		addTable(table.getName(), table);
 	}
 
-	@Override
 	public void addParam(Collection<QueryParameter> params)
 	{
 		this.params.addAll(params);
 	}
 
-	@Override
 	public void addTable(String name, DatabaseTable table)
 	{
 		tables.put(name, table);
 	}
 	
-	@Override
 	public void removeTable(String name)
 	{
 		tables.remove(name);
@@ -101,10 +96,8 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		this.qtype = qtype;
 	}
 	
-	@Override
 	public abstract int executeUpdate();
 	
-	@Override
 	public abstract long size();
 	
 	public long getFirstResult()
@@ -117,19 +110,16 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		this.first = first;
 	}
 	
-	@Override
 	public long getLimit()
 	{
 		return limit;
 	}
 	
-	@Override
 	public void setLimit(long limit)
 	{
 		this.limit = limit;
 	}
 	
-	@Override
 	public boolean isEmpty()
 	{
 		if (size == -1) size = size();
@@ -137,7 +127,6 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		else return false;
 	}
 	
-	@Override
 	public void addField(DatabaseField field)
 	{
 		DatabaseTable table = field.getDatabaseTable();
@@ -154,7 +143,6 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		}
 	}
 
-	@Override
 	public void addField(String fieldName)
 	{
 		int sep = fieldName.indexOf('.');
@@ -201,7 +189,6 @@ public abstract class AbstractDatabaseQuery implements DatabaseQuery
 		}
 	}
 
-	@Override
 	public void addField(String name, DatabaseField field)
 	{
 		fields.put(name, field);

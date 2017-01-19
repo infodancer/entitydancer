@@ -106,37 +106,31 @@ public class AbstractDatabaseField implements DatabaseField
 		this.generatedKey = generatedKey;
 	}
 
-	@Override
 	public void setNullable(boolean nullable)
 	{
 		this.nullable = nullable;
 	}
 
-	@Override
 	public boolean isNullable()
 	{
 		return nullable;
 	}
 
-	@Override
 	public DatabaseTable getDatabaseTable()
 	{
 		return table;
 	}
 
-	@Override
 	public void setDatabaseTable(DatabaseTable table)
 	{
 		this.table = table;
 	}
 	
-	@Override
 	public boolean isIndexed()
 	{
 		return indexed;
 	}
 	
-	@Override
 	public void setIndexed(boolean indexed)
 	{
 		this.indexed = indexed;

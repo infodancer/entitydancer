@@ -42,16 +42,12 @@ public abstract class AbstractDatabase implements Database
 		else throw new DatabaseException("Table must have a valid name (was null)!");
 	}
 
-	@Override
 	public abstract DatabaseTable describeTable(String name);
 	
-	@Override
 	public abstract boolean isOpen();
 
-	@Override
 	public abstract void close();
 
-	@Override
 	public abstract void initialize(Properties properties);
 	
 	/**
@@ -59,31 +55,22 @@ public abstract class AbstractDatabase implements Database
 	 */
 	protected abstract void initializeTableList();
 	
-	@Override
 	public abstract DatabaseField createField(String fieldName, int sqlType);
 
-	@Override
 	public abstract DatabaseTable createTable(String tableName);
 
-	@Override
 	public abstract DatabaseTable getTable(String name);
 
-	@Override
 	public abstract Collection<DatabaseTable> getTables();
 
-	@Override
 	public abstract void createTable(DatabaseTable table);
 
-	@Override
 	public abstract void updateTable(DatabaseTable table);
 
-	@Override
 	public abstract void dropTable(String tableName);
 
-	@Override
 	public abstract void dropTable(DatabaseTable table);
 
-	@Override
 	public void clear()
 	{
 		LinkedList<String> names = new LinkedList<String>();

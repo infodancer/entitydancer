@@ -1,9 +1,4 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-        <groupId>org.infodancer</groupId>
-        <artifactId>defaults</artifactId>
-        <version>0.0.12</version>
-  </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.infodancer.entitydancer</groupId>
   <artifactId>entitydancer</artifactId>
@@ -16,8 +11,8 @@
     <module>entitydancer-sql</module>
   </modules>
   <scm>
-    <connection>scm:git:http://infodancer.org/scm/git/entitydancer</connection>
-    <developerConnection>scm:git:http://infodancer.org/scm/git/entitydancer</developerConnection>
+    <connection>scm:git:git://infodancer.org/entitydancer</connection>
+    <developerConnection>scm:git:git+ssh://infodancer.org/srv/git/entitydancer</developerConnection>
     <tag>HEAD</tag>
   </scm>
 </project>

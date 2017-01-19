@@ -11,6 +11,12 @@
   <url>http://www.infodancer.org/srcdancer/project/entitydancer-dbapi</url>
   <description>The database api for entitydancer.  API only.</description>
   <dependencies>
+    <dependency>
+  	    <groupId>junit</groupId>
+      	<artifactId>junit</artifactId>
+      	<version>4.8.2</version>
+      	<scope>test</scope>
+  	</dependency>	
   </dependencies>
   <build>
   	<finalName>entitydancer-api</finalName>
