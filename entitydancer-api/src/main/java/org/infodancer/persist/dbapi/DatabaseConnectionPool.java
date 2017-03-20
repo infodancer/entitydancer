@@ -100,7 +100,6 @@ public class DatabaseConnectionPool<T extends DatabaseConnection>
 									logger.warning(msg.toString());
 								}
 							}
-							continue;
 						}
 					}
 					initializeConnection(result);
