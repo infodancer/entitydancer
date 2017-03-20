@@ -32,13 +32,13 @@ public class DatabaseConnectionPool<T extends DatabaseConnection>
 	public String toString()
 	{
 		StringBuilder msg = new StringBuilder();
-		msg.append("DatabaseConnectionPool[");
+		msg.append("DatabaseConnectionPool[min: ");
 		msg.append(Integer.toString(minConnections));
-		msg.append("/");
+		msg.append(", opened: ");
 		msg.append(Integer.toString(opened.size()));
-		msg.append("/");
+		msg.append(", inpool: ");
 		msg.append(Integer.toString(pool.size()));
-		msg.append("/");
+		msg.append(", max: ");
 		msg.append(Integer.toString(maxConnections));
 		msg.append("]");
 		return msg.toString();
@@ -71,7 +71,7 @@ public class DatabaseConnectionPool<T extends DatabaseConnection>
 							result = factory.createConnection();
 							long finish = System.currentTimeMillis();
 							long expired = ((finish - start) / 1000);
-							logger.fine(toString() + " Created new connection (" + expired + " seconds)");
+							logger.warning(toString() + " Created new connection (" + expired + " seconds)");
 						}
 						else 
 						{
@@ -121,7 +121,7 @@ public class DatabaseConnectionPool<T extends DatabaseConnection>
 			{
 				logger.warning(toString() + " Connection returned in " + totalTime + " seconds.");
 			}
-			logger.fine("Providing connection " + result.getConnectionId());
+			logger.warning("Providing connection " + result.getConnectionId());
 			return result;			
 		}
 		else return null;
