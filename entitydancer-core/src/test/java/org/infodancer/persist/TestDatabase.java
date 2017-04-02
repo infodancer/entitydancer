@@ -92,26 +92,22 @@ public class TestDatabase extends AbstractDatabase implements Database
 		return tables.get(name);
 	}
 
-	@Override
 	public DatabaseQuery createQuery()
 	{
 		return new TestDatabaseQuery(this);
 	}
 
-	@Override
 	public void alterTable(DatabaseTable table)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public DatabaseConnection getConnection()
 	{
 		return new TestDatabaseConnection();
 	}
 
-	@Override
 	public void putConnection(DatabaseConnection con)
 	{
 				

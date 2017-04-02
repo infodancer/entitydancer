@@ -71,7 +71,6 @@ public class DatabaseRelationshipCollection implements Collection
 		}
 	}
 	
-	@Override
 	public boolean add(Object o) 
 	{
 		if (cache == null) refresh();
@@ -79,7 +78,6 @@ public class DatabaseRelationshipCollection implements Collection
 		return true;
 	}
 
-	@Override
 	public boolean addAll(Collection c) 
 	{
 		if (cache == null) refresh();
@@ -90,13 +88,11 @@ public class DatabaseRelationshipCollection implements Collection
 		return true;
 	}
 
-	@Override
 	public void clear() 
 	{
 		if (cache != null) cache.clear();
 	}
 
-	@Override
 	public boolean contains(Object o) 
 	{
 		if (cache == null) refresh();
@@ -105,7 +101,6 @@ public class DatabaseRelationshipCollection implements Collection
 		else return false;
 	}
 
-	@Override
 	public boolean containsAll(Collection c) 
 	{
 		if (cache == null) refresh();
@@ -116,7 +111,6 @@ public class DatabaseRelationshipCollection implements Collection
 		return true;
 	}
 
-	@Override
 	public boolean isEmpty()
 	{
 		if (cache == null) refresh();
@@ -124,14 +118,12 @@ public class DatabaseRelationshipCollection implements Collection
 		else return false;
 	}
 
-	@Override
 	public Iterator iterator() 
 	{	
 		if (cache == null) refresh();
 		return new DatabaseRelationshipIterator(manager, foreignType, cache);
 	}
 
-	@Override
 	public boolean remove(Object o) 
 	{
 		if (cache == null) refresh();
@@ -144,7 +136,6 @@ public class DatabaseRelationshipCollection implements Collection
 		else return false; 
 	}
 
-	@Override
 	public boolean removeAll(Collection c) 
 	{
 		if (cache == null) refresh();
@@ -156,20 +147,17 @@ public class DatabaseRelationshipCollection implements Collection
 		return result;
 	}
 
-	@Override
 	public boolean retainAll(Collection c) 
 	{
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public int size() 
 	{
 		if (cache == null) refresh();
 		return cache.size();
 	}
 
-	@Override
 	public Object[] toArray() 
 	{
 		if (cache == null) refresh();
@@ -182,7 +170,6 @@ public class DatabaseRelationshipCollection implements Collection
 		return result;
 	}
 
-	@Override
 	public Object[] toArray(Object[] result) 
 	{
 		if (cache == null) refresh();

@@ -33,7 +33,6 @@ public class EntityQuery implements Query
 		this.manager = manager;
 	}
 
-	@Override
 	public List getResultList()
 	{
 		try
@@ -137,7 +136,6 @@ public class EntityQuery implements Query
 		return false;
 	}
 
-	@Override
 	public Object getSingleResult()
 	{
 		try
@@ -169,72 +167,61 @@ public class EntityQuery implements Query
 		}
 	}
 
-	@Override
 	public int executeUpdate()
 	{
 		return query.executeUpdate();
 	}
 
-	@Override
 	public Query setMaxResults(int maxResult)
 	{
 		query.setLimit(maxResult);
 		return this;
 	}
 
-	@Override
 	public Query setFirstResult(int startPosition)
 	{
 		query.setFirstResult(startPosition);
 		return this;
 	}
 
-	@Override
 	public Query setHint(String hintName, Object value)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(String name, Object value)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(String name, Date value, TemporalType temporalType)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(String name, Calendar value,
 			TemporalType temporalType)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(int position, Object value)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(int position, Date value,
 			TemporalType temporalType)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setParameter(int position, Calendar value,
 			TemporalType temporalType)
 	{
 		throw new PersistenceException("This method is not yet implemented!");
 	}
 
-	@Override
 	public Query setFlushMode(FlushModeType flushMode)
 	{
 		throw new PersistenceException("This method is not yet implemented!");

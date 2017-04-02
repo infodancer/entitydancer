@@ -19,13 +19,11 @@ public class DatabaseRelationshipIterator implements Iterator<Object>
 		this.i = keys.iterator();
 	}
 
-	@Override
 	public boolean hasNext() 
 	{
 		return i.hasNext();
 	}
 
-	@Override
 	public Object next() 
 	{
 		while (i.hasNext())
@@ -36,7 +34,6 @@ public class DatabaseRelationshipIterator implements Iterator<Object>
 		return null;
 	}
 
-	@Override
 	public void remove() 
 	{
 		// TODO remove from relationship

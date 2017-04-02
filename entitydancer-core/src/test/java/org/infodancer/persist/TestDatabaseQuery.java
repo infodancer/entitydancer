@@ -63,7 +63,6 @@ public class TestDatabaseQuery extends AbstractDatabaseQuery implements Database
 
 	}
 
-	@Override
 	public void addParam(String left, String type, String right)
 	{
 		params.add(new TestQueryParameter(left, type, right));
@@ -83,7 +82,6 @@ public class TestDatabaseQuery extends AbstractDatabaseQuery implements Database
 
 	}
 
-	@Override
 	public void executeQuery()
 	{
 		// TODO Auto-generated method stub
@@ -97,7 +95,6 @@ public class TestDatabaseQuery extends AbstractDatabaseQuery implements Database
 		return 0;
 	}
 
-	@Override
 	public boolean next()
 	{
 		// TODO Auto-generated method stub
@@ -118,70 +115,60 @@ public class TestDatabaseQuery extends AbstractDatabaseQuery implements Database
 		return 0;
 	}
 
-	@Override
 	public String getString(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Integer getInteger(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Long getLong(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Float getFloat(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Double getDouble(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Object getObject(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Date getDate(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Date getTimestamp(String name)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void clear()
 	{
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public String getNativeQuery()
 	{
 		// TODO Auto-generated method stub
@@ -202,7 +189,6 @@ public class TestDatabaseQuery extends AbstractDatabaseQuery implements Database
 		return 0;
 	}
 
-	@Override
 	public void close()
 	{
 		// TODO Auto-generated method stub
