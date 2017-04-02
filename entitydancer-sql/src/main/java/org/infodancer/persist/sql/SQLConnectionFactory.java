@@ -3,7 +3,10 @@ package org.infodancer.persist.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLTimeoutException;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -14,9 +17,11 @@ import org.infodancer.persist.dbapi.DatabaseException;
 public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnection>
 {
 	private static final Logger logger = Logger.getLogger(SQLConnectionFactory.class.getName());
+	private static final int TIMEOUT = 30;
 	Properties properties;
 	DataSource datasource;
-	
+	Set<Connection> connections = new TreeSet<Connection>();
+		
 	public SQLConnectionFactory(javax.sql.DataSource datasource)
 	{
 		this.datasource = datasource;
@@ -37,9 +42,32 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 	
 	public SQLConnection createConnection()
 	{
+		logger.warning("SQLConnectionFactory.createConnection()");
+		
 		try
 		{
-			logger.warning("SQLConnectionFactory.createConnection()");
+			logger.warning("SQLConnectionFactory.createConnection() trying to set login timeout for " + TIMEOUT + " seconds!");
+			if (datasource != null)
+			{
+				datasource.setLoginTimeout(TIMEOUT);
+				logger.warning("SQLConnectionFactory.createConnection() connection attempt will time out in " + TIMEOUT + " seconds!");
+			}
+			else if (properties != null)
+			{
+				DriverManager.setLoginTimeout(TIMEOUT);
+				logger.warning("SQLConnectionFactory.createConnection() connection attempt will time out in " + TIMEOUT + " seconds!");
+			}
+		}
+		
+		catch (SQLException e) 
+		{
+			logger.warning("Failed to set connection timeout!");
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			
 			Connection con = null;
 			if (datasource != null)
 			{
@@ -57,11 +85,26 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 				logger.warning("SQLConnectionFactory.createConnection() retrieved connection from DriverManager successfully!");
 			}
 			else throw new DatabaseException("Neither a Datasource nor a Properties object has been specified!");
+			// Add the retrieved connection to the set just in case
+			connections.add(con);
 			return new SQLConnection(con);
 		}
 		
+		catch (SQLTimeoutException e)
+		{
+			logger.warning("SQLConnectionFactory.createConnection() timed out after waiting for " + TIMEOUT + " seconds!");
+			// We have possibly become deadlocked; clear all existing connections and try to recover
+			for (Connection con : connections)
+			{
+				logger.warning("SQLConnectionFactory.createConnection() closing open connection due to possible deadlock!");
+				try { con.close(); } catch (Exception ee) { e.printStackTrace(); }
+			}
+			throw new DatabaseException(e);
+		}
+
 		catch (SQLException e)
 		{
+			logger.warning("SQLConnectionFactory.createConnection() encountered an error!");
 			throw new DatabaseException(e);
 		}
 	}

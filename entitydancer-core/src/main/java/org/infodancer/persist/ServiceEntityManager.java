@@ -127,7 +127,6 @@ public class ServiceEntityManager implements EntityManager
 	/**
 	 * Closes any open resources.
 	 */
-	@Override
 	public void close()
 	{
 		if (database != null) database.close();
@@ -157,7 +156,6 @@ public class ServiceEntityManager implements EntityManager
 		
 	}
 	
-	@Override
 	public boolean isOpen()
 	{
 		if (database != null) return database.isOpen();
@@ -169,7 +167,6 @@ public class ServiceEntityManager implements EntityManager
 	 * context.
 	 * @return
 	 */
-	@Override
 	public boolean contains(Object o) 
 	{
 		// TODO This method is not transaction-aware, should check DB with a connection
@@ -2505,25 +2502,21 @@ public class ServiceEntityManager implements EntityManager
 		return new DatabaseRelationshipCollection(this, con, type, field, o, foreignType);
 	}
 
-	@Override
 	public Query createNamedQuery(String name)
 	{
 		throw new PersistenceException("This method is not yet supported!");
 	}
 
-	@Override
 	public Query createNativeQuery(String sqlString)
 	{
 		throw new PersistenceException("This method is not yet supported!");
 	}
 
-	@Override
 	public Query createNativeQuery(String sqlString, Class resultClass)
 	{
 		throw new PersistenceException("This method is not yet supported!");
 	}
 
-	@Override
 	public Query createNativeQuery(String sqlString, String resultSetMapping)
 	{
 		throw new PersistenceException("This method is not yet supported!");
