@@ -761,7 +761,11 @@ public class ServiceEntityManager implements EntityManager
 			tables.add(table);
 			return tables;			
 		}
-		else return null;
+		else 
+		{
+			logger.warning("ServiceEntityManager.defineEntityStore() failed because database was null!");
+			return null;
+		}
 	}
 
 	DatabaseField createFieldDefinition(EntityField field)

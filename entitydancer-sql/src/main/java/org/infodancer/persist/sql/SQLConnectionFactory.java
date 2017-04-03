@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -20,7 +20,7 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 	private static final int TIMEOUT = 30;
 	Properties properties;
 	DataSource datasource;
-	Set<Connection> connections = new TreeSet<Connection>();
+	List<Connection> connections = new ArrayList<Connection>();
 		
 	public SQLConnectionFactory(javax.sql.DataSource datasource)
 	{
@@ -44,6 +44,7 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 	{
 		logger.warning("SQLConnectionFactory.createConnection()");
 		
+		/* Setting the timeout appears to not be supported by tomcat's database pooling
 		try
 		{
 			logger.warning("SQLConnectionFactory.createConnection() trying to set login timeout for " + TIMEOUT + " seconds!");
@@ -64,7 +65,7 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 			logger.warning("Failed to set connection timeout!");
 			e.printStackTrace();
 		}
-		
+		*/
 		try
 		{
 			
@@ -86,7 +87,10 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 			}
 			else throw new DatabaseException("Neither a Datasource nor a Properties object has been specified!");
 			// Add the retrieved connection to the set just in case
-			connections.add(con);
+			if (!connections.contains(con))
+			{
+				connections.add(con);
+			}
 			return new SQLConnection(con);
 		}
 		
