@@ -7,6 +7,7 @@ import java.sql.SQLTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -18,6 +19,7 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 {
 	private static final Logger logger = Logger.getLogger(SQLConnectionFactory.class.getName());
 	private static final int TIMEOUT = 30;
+	private AtomicLong connectionCount = new AtomicLong(0);
 	Properties properties;
 	DataSource datasource;
 	List<Connection> connections = new ArrayList<Connection>();
@@ -42,7 +44,7 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 	
 	public SQLConnection createConnection()
 	{
-		logger.warning("SQLConnectionFactory.createConnection()");
+		// logger.warning("SQLConnectionFactory.createConnection()");
 		
 		/* Setting the timeout appears to not be supported by tomcat's database pooling
 		try
@@ -72,9 +74,9 @@ public class SQLConnectionFactory implements DatabaseConnectionFactory<SQLConnec
 			Connection con = null;
 			if (datasource != null)
 			{
-				logger.warning("SQLConnectionFactory.createConnection() retrieving connection from datasource!");
-				con = datasource.getConnection();
-				logger.warning("SQLConnectionFactory.createConnection() retrieved connection from datasource successfully!");
+				// logger.warning("SQLConnectionFactory.createConnection() retrieving new connection; " + connectionCount + " are currently open for this instance.");
+				con = datasource.getConnection();				
+				// logger.warning("SQLConnectionFactory.createConnection() retrieved connection " + connectionCount.addAndGet(1) + " from datasource successfully!");
 			}
 			else if (properties != null)
 			{				

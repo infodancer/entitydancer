@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
 import javax.naming.Context;
@@ -33,9 +34,9 @@ public class SQLDatabase extends AbstractDatabase implements Database
 {
 	private static final Logger logger = Logger.getLogger(SQLDatabase.class.getClass().getName());
 	protected SQLConnectionFactory factory;
-	protected DatabaseConnectionPool<SQLConnection> pool;
 	protected Map<String,DatabaseTable> tables = new TreeMap<String,DatabaseTable>();
-
+	private AtomicLong connectionCount = new AtomicLong(0);
+	
 	@Override
 	public void initialize(Properties properties)
 	{
@@ -53,14 +54,12 @@ public class SQLDatabase extends AbstractDatabase implements Database
 
 	public SQLConnection getConnection()
 	{
-		return pool.getConnection();
+		logger.warning("[SQLDatabase] retrieving new connection; " + connectionCount + " are currently open for this instance.");
+		SQLConnection con = factory.createConnection();
+		logger.warning("[SQLDatabase] retrieved new connection successfully; " + connectionCount.incrementAndGet() + " are currently open for this instance.");
+		return con;
 	}
-	
-	public void putConnection(SQLConnection con)
-	{
-		pool.putConnection(con);
-	}
-	
+		
 	@Override
 	public DatabaseTable getTable(String name)
 	{
@@ -124,7 +123,7 @@ public class SQLDatabase extends AbstractDatabase implements Database
 				}
 			}
 			sql.append(')');
-			con = pool.getConnection();
+			con = getConnection();
 			st = con.createStatement();
 			st.execute(sql.toString());
 			tables.put(table.getName(), table);
@@ -306,7 +305,7 @@ public class SQLDatabase extends AbstractDatabase implements Database
 			DatabaseTable table = tables.get(tableName);
 			if (table != null)
 			{
-				con = pool.getConnection();
+				con = getConnection();
 				 st = con.createStatement();
 				 sql.append("DROP TABLE ");
 				 sql.append(tableName);
@@ -359,7 +358,6 @@ public class SQLDatabase extends AbstractDatabase implements Database
 	public void setDataSource(javax.sql.DataSource datasource) throws SQLException
 	{
 		this.factory = new SQLConnectionFactory(datasource);
-		this.pool = new DatabaseConnectionPool<SQLConnection>(factory, new Properties());
 		initialize();
 	}
 
@@ -371,7 +369,7 @@ public class SQLDatabase extends AbstractDatabase implements Database
 		
 		try 
 		{
-			con = pool.getConnection();
+			con = getConnection();
 			st1 = con.createStatement();
 			rs1 = st1.executeQuery("SHOW TABLES");
 			while (rs1.next())
@@ -404,11 +402,6 @@ public class SQLDatabase extends AbstractDatabase implements Database
 			{
 				this.factory = new SQLConnectionFactory(properties);
 			}
-			if (pool == null)
-			{
-				this.pool = new DatabaseConnectionPool<SQLConnection>(factory, properties);
-			}
-			this.pool.open();
 			initializeTableList();
 		}
 		
@@ -636,18 +629,14 @@ public class SQLDatabase extends AbstractDatabase implements Database
 	@Override
 	public boolean isOpen()
 	{
-		if (pool != null) 
-		{
-			if (pool.size() > 0) return true;
-			else return false;
-		}
+		if (factory != null) return true;
 		else return false;
 	}
 
 	@Override
 	public void close()
 	{
-		if (pool != null) pool.close();
+		factory = null;
 	}
 	
 	@Override
@@ -673,7 +662,7 @@ public class SQLDatabase extends AbstractDatabase implements Database
 		try 
 		{
 			logger.finest("Describing table: " + tableName);
-			con = pool.getConnection();
+			con = getConnection();
 			st1 = con.createStatement();
 			rs1 = st1.executeQuery("DESCRIBE " + tableName);
 			DatabaseTable result = createTable(tableName);
@@ -778,26 +767,31 @@ public class SQLDatabase extends AbstractDatabase implements Database
 		else return 0;
 	}
 
-	@Override
 	public DatabaseQuery createQuery()
 	{
 		return new SQLDatabaseQuery(this);
 	}
 
-	@Override
 	public void alterTable(DatabaseTable newtable)
 	{
 		throw new DatabaseException("Operation not yet implemented!");
 	}
 
-	@Override
-	public void putConnection(DatabaseConnection con)
+	public void putConnection(DatabaseConnection con) 
 	{
-		if (!con.isAutoCommit()) 
+		try
 		{
-			con.rollback();
-			con.setAutoCommit(true);
+			if (con != null) 
+			{
+				logger.warning("[SQLDatabase] About to destroy a returned connection with " + connectionCount + " still open");
+				con.destroy();
+				logger.warning("[SQLDatabase] Destroyed connection successfully; " + connectionCount.decrementAndGet() + " still open");
+			}
 		}
-		pool.putConnection((SQLConnection) con);
+		
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 }

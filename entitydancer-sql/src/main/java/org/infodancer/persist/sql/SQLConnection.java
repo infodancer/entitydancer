@@ -44,31 +44,29 @@ public class SQLConnection extends DatabaseConnection implements Connection
 
 	public void close() throws SQLException 
 	{
-		pool.putConnection(this);
+		logger.warning("[SQLConnection] About to close a connection");
+		if (con != null) con.close();
+		logger.warning("[SQLConnection] Connection closed successfully");
 	}
 
-	@Override
 	public boolean isWrapperFor(Class<?> arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.isWrapperFor(arg0);
 	}
 
-	@Override
 	public <T> T unwrap(Class<T> arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.unwrap(arg0);
 	}
 
-	@Override
 	public void clearWarnings() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		con.clearWarnings();
 	}
 
-	@Override
 	public void commit() throws DatabaseException
 	{
 		try
@@ -83,56 +81,48 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		}
 	}
 
-	@Override
 	public Array createArrayOf(String arg0, Object[] arg1) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createArrayOf(arg0, arg1);
 	}
 
-	@Override
 	public Blob createBlob() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createBlob();
 	}
 
-	@Override
 	public Clob createClob() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createClob();
 	}
 
-	@Override
 	public NClob createNClob() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createNClob();
 	}
 
-	@Override
 	public SQLXML createSQLXML() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createSQLXML();
 	}
 
-	@Override
 	public Statement createStatement() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createStatement();
 	}
 
-	@Override
 	public Statement createStatement(int arg0, int arg1) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createStatement(arg0, arg1);
 	}
 
-	@Override
 	public Statement createStatement(int arg0, int arg1, int arg2)
 			throws SQLException
 	{
@@ -140,111 +130,95 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.createStatement(arg0, arg1, arg2);
 	}
 
-	@Override
 	public Struct createStruct(String arg0, Object[] arg1) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.createStruct(arg0, arg1);
 	}
 
-	@Override
 	public boolean getAutoCommit() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getAutoCommit();
 	}
 
-	@Override
 	public String getCatalog() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getCatalog();
 	}
 
-	@Override
 	public Properties getClientInfo() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getClientInfo();		
 	}
 
-	@Override
 	public String getClientInfo(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getClientInfo(arg0);
 	}
 
-	@Override
 	public int getHoldability() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getHoldability();
 	}
 
-	@Override
 	public DatabaseMetaData getMetaData() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getMetaData();
 	}
 
-	@Override
 	public int getTransactionIsolation() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getTransactionIsolation();
 	}
 
-	@Override
 	public Map<String, Class<?>> getTypeMap() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getTypeMap();
 	}
 
-	@Override
 	public SQLWarning getWarnings() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.getWarnings();
 	}
 
-	@Override
 	public boolean isClosed() throws SQLException
 	{
 		if (isLocked()) return true;
 		else return con.isClosed();
 	}
 
-	@Override
 	public boolean isReadOnly() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.isReadOnly();
 	}
 
-	@Override
 	public boolean isValid(int arg0) throws SQLException
 	{
 		return con.isValid(arg0);
 	}
 
-	@Override
 	public String nativeSQL(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.nativeSQL(arg0);
 	}
 
-	@Override
 	public CallableStatement prepareCall(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.prepareCall(arg0);
 	}
 
-	@Override
 	public CallableStatement prepareCall(String arg0, int arg1, int arg2)
 			throws SQLException
 	{
@@ -252,7 +226,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareCall(arg0, arg1, arg2);
 	}
 
-	@Override
 	public CallableStatement prepareCall(String arg0, int arg1, int arg2,
 			int arg3) throws SQLException
 	{
@@ -260,14 +233,12 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareCall(arg0, arg1, arg2, arg3);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.prepareStatement(arg0);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0, int arg1)
 			throws SQLException
 	{
@@ -275,7 +246,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareStatement(arg0, arg1);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0, int[] arg1)
 			throws SQLException
 	{
@@ -283,7 +253,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareStatement(arg0, arg1);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0, String[] arg1)
 			throws SQLException
 	{
@@ -291,7 +260,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareStatement(arg0, arg1);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0, int arg1, int arg2)
 			throws SQLException
 	{
@@ -299,7 +267,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareStatement(arg0, arg1, arg2);
 	}
 
-	@Override
 	public PreparedStatement prepareStatement(String arg0, int arg1, int arg2,
 			int arg3) throws SQLException
 	{
@@ -307,7 +274,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		return con.prepareStatement(arg0, arg1, arg2, arg3);
 	}
 
-	@Override
 	public void releaseSavepoint(Savepoint arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
@@ -329,7 +295,6 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		}
 	}
 
-	@Override
 	public void rollback(Savepoint arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
@@ -351,21 +316,18 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		}
 	}
 
-	@Override
 	public void setCatalog(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		con.setCatalog(arg0);
 	}
 
-	@Override
 	public void setClientInfo(Properties arg0) throws SQLClientInfoException
 	{
 		if (isLocked()) return;
 		con.setClientInfo(arg0);
 	}
 
-	@Override
 	public void setClientInfo(String arg0, String arg1)
 			throws SQLClientInfoException
 	{
@@ -373,42 +335,36 @@ public class SQLConnection extends DatabaseConnection implements Connection
 		con.setClientInfo(arg0, arg1);
 	}
 
-	@Override
 	public void setHoldability(int arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		con.setHoldability(arg0);
 	}
 
-	@Override
 	public void setReadOnly(boolean arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		con.setReadOnly(arg0);
 	}
 
-	@Override
 	public Savepoint setSavepoint() throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.setSavepoint();
 	}
 
-	@Override
 	public Savepoint setSavepoint(String arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		return con.setSavepoint(arg0);
 	}
 
-	@Override
 	public void setTransactionIsolation(int arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
 		con.setTransactionIsolation(arg0);
 	}
 
-	@Override
 	public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException
 	{
 		if (isLocked()) throw new ConnectionLockedException();
@@ -461,8 +417,13 @@ public class SQLConnection extends DatabaseConnection implements Connection
 	@Override
 	public void destroy()
 	{
-		try { con.close(); }
-		catch (SQLException e) { }
+		try 
+		{ 
+			logger.warning("[SQLConnection] About to destroy a connection");
+			con.close();
+			logger.warning("[SQLConnection] Cconnection successfully destroyed");
+		}
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 
 	@Override
