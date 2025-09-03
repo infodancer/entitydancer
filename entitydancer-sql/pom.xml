@@ -29,10 +29,10 @@
     </dependency>
     <!-- Dependencies for testing only below -->
     <dependency>
-    	<groupId>mysql</groupId>
-    	<artifactId>mysql-connector-java</artifactId>
-    	<version>8.0.28</version>
-    	<scope>test</scope>
+        <groupId>org.mariadb.jdbc</groupId>
+        <artifactId>mariadb-java-client</artifactId>
+        <version>3.0.8</version>
+        <scope>test</scope>
     </dependency>
     <dependency>
   	    <groupId>junit</groupId>
